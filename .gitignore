@@ -1,0 +1,6 @@
+node_modules/
+preview-dist/
+dist/assets/
+dist/index.html
+.DS_Store
+Thumbs.db

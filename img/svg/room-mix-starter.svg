@@ -1,0 +1,65 @@
+<svg width="74" height="72" viewBox="0 0 74 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <filter id="filter0_d_7796_38357" x="10" y="13" width="50" height="47" filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                           result="hardAlpha"/>
+            <feOffset/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_7796_38357"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_7796_38357" result="shape"/>
+        </filter>
+        <filter id="filter1_d_7796_38357" x="60" y="36" width="9.5" height="4" filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                           result="hardAlpha"/>
+            <feOffset dx="1"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.4625 0 0 0 0 0.4625 0 0 0 0 0.4625 0 0 0 1 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_7796_38357"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_7796_38357" result="shape"/>
+        </filter>
+        <linearGradient id="paint1_linear_7796_38357" x1="105.5" y1="36" x2="19.5" y2="36"
+                        gradientUnits="userSpaceOnUse">
+            <stop stop-color="rgb(227, 140, 63)"/>
+            <stop offset="1" stop-color="rgb(227, 140, 63)" stop-opacity="0"/>
+            <stop offset="1" stop-color="rgb(227, 140, 63)" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="paint2_linear_7796_38357" x1="105.5" y1="36" x2="19.5" y2="36"
+                        gradientUnits="userSpaceOnUse">
+            <stop stop-color="rgb(227, 140, 63)"/>
+            <stop offset="1" stop-color="rgb(227, 140, 63)" stop-opacity="0"/>
+            <stop offset="1" stop-color="rgb(227, 140, 63)" stop-opacity="0"/>
+        </linearGradient>
+    </defs>
+
+    <g>
+        <circle cx="36" cy="36" r="36" fill="white" fill-opacity="0.3"/>
+        <path d="M33 10.3333L72 1V71L33 61.6667V10.3333Z" fill="white"/>
+        <path d="M33 10.3333L72 1V71L33 61.6667V10.3333Z" fill="rgb(255, 190, 123)"/>
+        <path d="M33 10.3333L-5 1V71L33 61.6667V10.3333Z" fill="currentColor" fill-opacity="0.6"/>
+        <path d="M74 2L72 1V71L74 69V2Z" fill="rgb(227, 140, 63)"/>
+        <path d="M68 5L36 12.7333V34.9444L68 34.0556V5Z" fill="url(#paint1_linear_7796_38357)"
+              style="mix-blend-mode:multiply"/>
+        <path d="M68 38.9444L36 38.0556V59.2667L68 67V38.9444Z" fill="url(#paint2_linear_7796_38357)"
+              style="mix-blend-mode:multiply"/>
+        <g filter="url(#filter0_d_7796_38357)">
+            <path
+                d="M19.0695 28.3057L15.835 24.5753C25.0428 16.2956 33.7877 16.2788 39.502 17.7204C44.1528 18.8956 47.5492 21.2001 49 22.3191L53.0905 17.1931L56 31.1834L41.9486 31.1497L45.9227 26.1769C43.1777 24.0721 31.8686 16.8003 19.0695 28.3057Z"
+                fill="white"/>
+            <path
+                d="M21.0076 50.6807L16.915 55.8093L14 41.8191L28.0514 41.8527L24.0844 46.8227C26.8222 48.9239 38.1318 56.2072 50.9415 44.6967L54.1761 48.4271C47.6628 54.2779 41.3865 56 36.2508 56C34.1183 56 32.1842 55.7027 30.509 55.282C25.8546 54.1059 22.4565 51.7987 21.0076 50.6807Z"
+                fill="white"/>
+        </g>
+        <circle cx="68.5" cy="37.5" r="2.5" fill="rgb(155, 155, 155)"/>
+        <g filter="url(#filter1_d_7796_38357)">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M64.6368 38.9247C63.6703 39.4082 62.4876 40 61 40C60.4477 40 60 39.5523 60 39C60 38.4477 60.4477 38 61 38C61.9813 38 62.7803 37.6168 63.8028 37.1056C63.8228 37.0955 63.843 37.0855 63.8632 37.0753C64.8297 36.5918 66.0124 36 67.5 36C68.0523 36 68.5 36.4477 68.5 37C68.5 37.5523 68.0523 38 67.5 38C66.5187 38 65.7197 38.3832 64.6972 38.8944C64.6772 38.9045 64.657 38.9145 64.6368 38.9247Z"
+                  fill="rgb(169, 169, 169)"/>
+        </g>
+    </g>
+</svg>
