@@ -323,7 +323,7 @@ function RoomCard({ room, onSelectRate }) {
         <div className="room-features-overlay">
           {room.photoFeatures.map((icon, index) => (
             <div className="room-feature-tile" key={`${room.id}-feature-${index}`}>
-              <SvgMaskIcon className="room-feature-svg" icon={icon} />
+              <SvgIcon className="room-feature-svg" icon={icon} />
             </div>
           ))}
         </div>
@@ -333,7 +333,7 @@ function RoomCard({ room, onSelectRate }) {
         <div className="room-title-row">
           <h2>{room.name}</h2>
           <button className="circle-toggle" type="button" aria-label="Открыть детали">
-            <SvgMaskIcon className="room-toggle-icon" icon={arrowDownIcon} />
+            <SvgIcon className="room-toggle-icon" icon={arrowDownIcon} />
           </button>
         </div>
         <div className="room-meta">{room.params}</div>
@@ -360,7 +360,7 @@ function RateCard({ rate, onSelect }) {
       <div className="rate-feature-list">
         {features.map((feature) => (
           <div key={feature.text} className="rate-feature">
-            <SvgMaskIcon className={`rate-feature-icon ${feature.benefit ? 'rate-feature-icon-benefit' : ''}`} icon={feature.icon} />
+            <SvgIcon className={`rate-feature-icon ${feature.benefit ? 'rate-feature-icon-benefit' : ''}`} icon={feature.icon} />
             <span>{feature.text}</span>
           </div>
         ))}
@@ -438,8 +438,8 @@ function CheckoutScreen({ bookingFor, bookingForItems, onBack, onBookingForChang
   );
 }
 
-function SvgMaskIcon({ className, icon }) {
-  return <span aria-hidden="true" className={className} style={{ '--icon-url': `url(${icon})` }} />;
+function SvgIcon({ className, icon }) {
+  return <img alt="" aria-hidden="true" className={className} src={icon} />;
 }
 
 function FilterChip({ active, filter, onClear, onClick, open, value }) {
@@ -460,10 +460,10 @@ function FilterChip({ active, filter, onClear, onClick, open, value }) {
                 onClear(filter.key);
               }}
             >
-              <SvgMaskIcon className="filter-chip-clear-icon" icon={crossIcon} />
+              <SvgIcon className="filter-chip-clear-icon" icon={crossIcon} />
             </span>
           ) : (
-            filter.type === 'multi' ? <SvgMaskIcon className={`filter-chip-arrow ${open ? 'filter-chip-arrow-open' : ''}`} icon={arrowDownIcon} /> : null
+            filter.type === 'multi' ? <SvgIcon className={`filter-chip-arrow ${open ? 'filter-chip-arrow-open' : ''}`} icon={arrowDownIcon} /> : null
           )
         }
         label={label}

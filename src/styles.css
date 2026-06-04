@@ -289,16 +289,7 @@ input {
 .room-toggle-icon {
   width: 14px;
   height: 14px;
-  background: #2d6bcc;
-  display: inline-block;
-  mask-image: var(--icon-url);
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: contain;
-  -webkit-mask-image: var(--icon-url);
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  -webkit-mask-size: contain;
+  display: block;
 }
 
 .filter-chip-arrow {
@@ -423,16 +414,7 @@ input {
 .room-feature-svg {
   width: 16px;
   height: 16px;
-  background: #7d858f;
-  display: inline-block;
-  mask-image: var(--icon-url);
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: contain;
-  -webkit-mask-image: var(--icon-url);
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  -webkit-mask-size: contain;
+  display: block;
 }
 
 .room-card-body {
@@ -516,22 +498,14 @@ input {
 .rate-feature-icon {
   width: 18px;
   height: 18px;
-  background: #98a1ad;
   margin-top: 4px;
   flex: 0 0 auto;
-  display: inline-block;
-  mask-image: var(--icon-url);
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: contain;
-  -webkit-mask-image: var(--icon-url);
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  -webkit-mask-size: contain;
+  display: block;
+  filter: grayscale(1) brightness(0.75);
 }
 
 .rate-feature-icon-benefit {
-  background: #ec7b12;
+  filter: none;
 }
 
 .rate-price-block {
