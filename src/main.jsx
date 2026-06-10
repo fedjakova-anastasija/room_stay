@@ -12,6 +12,7 @@ import '../dist/dist/theming/booking-form.css';
 import './styles.css';
 import standardRoomImage from '../img/638905038895238797-b2a3803f-0648-417b-959d-0f86c6768e8b.jpg';
 import suiteRoomImage from '../img/638905039312398814-82a5d543-224a-4524-8a0f-b513be82f9bc.jpg';
+import improvedStandardImage from '../img/3gbfhkirenyttb1ox9br0198ngv3089j-BCjppGL6.jpg';
 import mealIcon from '../img/svg/restaurant.svg?raw';
 import cancellationIcon from '../img/svg/unlock.svg?raw';
 import paymentIcon from '../img/svg/purse.svg?raw';
@@ -38,6 +39,7 @@ import roomsMetaIcon from '../img/svg/rooms.svg?raw';
 import petsFriendlyIcon from '../img/svg/features/pets_friendly.svg?raw';
 import noMosquitoIcon from '../img/svg/features/no_mosquito.svg?raw';
 import singleBedIcon from '../img/svg/features/single_bed.svg?raw';
+import singleBedOverlayIcon from '../img/svg/features/single_bed.svg';
 import airConditioningDetailIcon from '../img/svg/features/air_conditioning.svg?raw';
 import doubleBedDetailIcon from '../img/svg/features/double_bed.svg?raw';
 import kingBedDetailIcon from '../img/svg/features/king_bed.svg?raw';
@@ -48,6 +50,7 @@ import wifiDetailIcon from '../img/svg/features/wifi.svg?raw';
 const roomImages = {
   standard: standardRoomImage,
   suite: suiteRoomImage,
+  improvedStandard: improvedStandardImage,
 };
 
 const filters = [
@@ -72,12 +75,25 @@ const filters = [
       { value: 'river', label: 'Вид на реку' },
     ],
   },
+  {
+    key: 'meal',
+    label: 'Питание',
+    type: 'multi',
+    scope: 'rate',
+    options: [
+      { value: 'no-food', label: 'Без питания' },
+      { value: 'breakfast', label: 'Завтрак' },
+      { value: 'half-board', label: 'Полупансион' },
+      { value: 'all-inclusive', label: 'Все включено' },
+    ],
+  },
   { key: 'balcony', label: 'Балкон', type: 'single', scope: 'room' },
   { key: 'freeCancellation', label: 'Бесплатная отмена', type: 'single', scope: 'rate' },
   { key: 'noPrepayment', label: 'Без предоплаты', type: 'single', scope: 'rate' },
 ];
 
 const initialFilterState = {
+  meal: [],
   bedType: [],
   view: [],
   balcony: false,
@@ -87,9 +103,167 @@ const initialFilterState = {
 
 const rooms = [
   {
+    id: 'suite',
+    image: roomImages.improvedStandard,
+    name: 'Стандарт двухместный',
+    params: '32 кв.м · до 3 мест',
+    capacityLabel: 'Вместимость до 3 мест',
+    area: '32 м²',
+    roomCount: '1 комн.',
+    guests: '2 односпальные кровати',
+    filterTags: {
+      bedType: ['single'],
+      view: ['mountain'],
+      balcony: false,
+    },
+    photoFeatures: [viewIcon, singleBedOverlayIcon, airConditioningIcon, lockIcon, wifiIcon],
+    detailFeatureBadges: [
+      { icon: viewDetailIcon, label: 'Вид из окна' },
+      { icon: airConditioningDetailIcon, label: 'Кондиционер' },
+      { icon: singleBedIcon, label: 'Односпальная кровать' },
+      { icon: wifiDetailIcon, label: 'Wi-Fi' },
+      { icon: lockDetailIcon, label: 'Электронный замок' },
+    ],
+    detailDescription:
+      'Номер повышенной категории с расширенным набором оснащения. Приоритетные иконки в карточке помогают быстро сравнить ключевые преимущества номера и выбрать подходящее предложение.',
+    detailSections: [
+      {
+        title: 'Размещение',
+        items: ['2 односпальные кровати', 'Поздний выезд по запросу'],
+      },
+      {
+        title: 'Оборудование и электроника',
+        items: ['Кондиционер', 'Сейф в номере', 'Электронные замки'],
+      },
+      {
+        title: 'Видео/аудио',
+        items: ['Телевизор с плоским экраном', 'Домашний кинотеатр'],
+      },
+      {
+        title: 'Интернет/телефония',
+        items: ['Высокоскоростной Wi-Fi'],
+      },
+    ],
+    rates: [
+      {
+        id: 'suite-basic-prepay',
+        meal: 'Питание не включено',
+        cancellation: 'Бесплатная отмена',
+        payment: 'Нужна предоплата',
+        price: 8000,
+        oldPrice: 16000,
+        discount: '-50%',
+        taxes: 'Налоги и сборы включены',
+        cardServiceTitles: ['Бассейн', 'Пляж'],
+        tooltipServiceTitles: ['Бассейн', 'Пляж', 'SPA-зона', 'Прокат велосипедов', 'Парковка'],
+        detailHighlights: ['Бассейн', 'Пляж', 'SPA-зона', 'Прокат велосипедов'],
+        tooltipDetails: {
+          meal: {
+            title: 'Питание не включено',
+            text: 'Питание в стоимость не входит. Его можно добавить на следующем шаге.',
+          },
+          cancellation: {
+            title: 'Бесплатная отмена',
+            text: 'Бесплатная отмена бронирования возможна до 21.12.2026 0:00 (UTC +03:00). После этого удерживается часть стоимости бронирования.',
+          },
+          payment: {
+            title: 'Способы оплаты',
+            text: 'Нужна предоплата. Для подтверждения бронирования требуется оплата банковской картой.',
+          },
+        },
+      },
+      {
+        id: 'suite-breakfast-flex',
+        meal: 'Завтрак',
+        cancellation: 'Условия отмены',
+        payment: 'Без предоплаты',
+        price: 9600,
+        oldPrice: 12000,
+        discount: '-20%',
+        taxes: 'Налоги и сборы включены',
+        cardServiceTitles: ['Сейф', 'Поздний выезд'],
+        tooltipServiceTitles: ['Сейф', 'Поздний выезд', 'Коворкинг-зона', 'Бизнес-центр', 'Конференц-зал'],
+        detailHighlights: ['Сейф в номере', 'Поздний выезд до 14:00', 'Коворкинг-зона'],
+        tooltipDetails: {
+          meal: {
+            title: 'Завтрак',
+            text: 'Завтрак включен в стоимость тарифа для всех гостей.',
+          },
+          cancellation: {
+            title: 'Условия отмены',
+            text: 'Бесплатная отмена невозможна. При отмене бронирования взимается стоимость первых суток проживания.',
+          },
+          payment: {
+            title: 'Способы оплаты',
+            text: 'Без предоплаты. Оплата производится при заселении.',
+          },
+        },
+      },
+      {
+        id: 'suite-breakfast-premium',
+        meal: 'Завтрак',
+        cancellation: 'Условия отмены',
+        payment: 'Без предоплаты',
+        price: 12000,
+        taxes: 'Налоги и сборы включены',
+        cardServiceTitles: ['Бассейн', 'Парковка'],
+        tooltipServiceTitles: ['Бассейн', 'Парковка', 'Пляж', 'Массажные кабинеты'],
+        detailHighlights: ['Бассейн', 'Пляж', 'Парковка', 'Массажные кабинеты'],
+        tooltipDetails: {
+          meal: {
+            title: 'Завтрак',
+            text: 'Завтрак включен в стоимость тарифа для всех гостей.',
+          },
+          cancellation: {
+            title: 'Условия отмены',
+            text: 'Бесплатная отмена невозможна. При отмене бронирования взимается стоимость первых суток проживания.',
+          },
+          payment: {
+            title: 'Способы оплаты',
+            text: 'Без предоплаты. Оплата производится при заселении.',
+          },
+        },
+      },
+      {
+        id: 'suite-all-inclusive-flex',
+        meal: 'Питание «Все включено»',
+        cancellation: 'Бесплатная отмена',
+        payment: 'Без предоплаты',
+        price: 13200,
+        oldPrice: 15000,
+        discount: '-12%',
+        taxes: 'Налоги и сборы включены',
+        cardServiceTitles: ['SPA-зона', 'Парковка'],
+        tooltipServiceTitles: ['SPA-зона', 'Парковка', 'Пляж', 'Бассейн'],
+        detailHighlights: ['SPA-зона', 'Парковка', 'Бассейн'],
+        tooltipDetails: {
+          meal: { title: 'Все включено', text: 'Тариф включает расширенный пакет питания.' },
+          cancellation: { title: 'Бесплатная отмена', text: 'Бесплатная отмена доступна до даты, указанной в правилах бронирования.' },
+          payment: { title: 'Способы оплаты', text: 'Без предоплаты. Оплата производится при заселении.' },
+        },
+      },
+      {
+        id: 'suite-breakfast-prepay',
+        meal: 'Завтрак',
+        cancellation: 'Бесплатная отмена',
+        payment: 'Нужна предоплата',
+        price: 10400,
+        taxes: 'Налоги и сборы включены',
+        cardServiceTitles: ['Сейф', 'Бассейн'],
+        tooltipServiceTitles: ['Сейф', 'Бассейн', 'Парковка', 'Поздний выезд'],
+        detailHighlights: ['Сейф', 'Бассейн'],
+        tooltipDetails: {
+          meal: { title: 'Завтрак', text: 'Завтрак включен в стоимость тарифа для всех гостей.' },
+          cancellation: { title: 'Бесплатная отмена', text: 'Бесплатная отмена доступна до даты, указанной в правилах бронирования.' },
+          payment: { title: 'Способы оплаты', text: 'Нужна предоплата для подтверждения бронирования.' },
+        },
+      },
+    ],
+  },
+  {
     id: 'standard-family',
-    image: roomImages.standard,
-    name: 'Трехместный семейный номер Standard',
+    image: roomImages.suite,
+    name: 'Стандарт улучшенный',
     params: '30 кв.м · до 5 мест',
     capacityLabel: 'Вместимость до 5 мест',
     area: '30 м²',
@@ -208,128 +382,38 @@ const rooms = [
           },
         },
       },
-    ],
-  },
-  {
-    id: 'suite',
-    image: roomImages.suite,
-    name: 'Люкс',
-    params: '32 кв.м · до 3 мест',
-    capacityLabel: 'Вместимость до 3 мест',
-    area: '32 м²',
-    roomCount: '1 комн.',
-    guests: '1 большая двуспальная кровать',
-    filterTags: {
-      bedType: ['double'],
-      view: ['mountain'],
-      balcony: false,
-    },
-    photoFeatures: [viewIcon, kingBedIcon, airConditioningIcon, lockIcon, wifiIcon],
-    detailFeatureBadges: [
-      { icon: viewDetailIcon, label: 'Вид из окна' },
-      { icon: airConditioningDetailIcon, label: 'Кондиционер' },
-      { icon: kingBedDetailIcon, label: 'Большая двуспальная кровать' },
-      { icon: wifiDetailIcon, label: 'Wi-Fi' },
-      { icon: lockDetailIcon, label: 'Электронный замок' },
-    ],
-    detailDescription:
-      'Номер повышенной категории с расширенным набором оснащения. Приоритетные иконки в карточке помогают быстро сравнить ключевые преимущества номера и выбрать подходящее предложение.',
-    detailSections: [
       {
-        title: 'Размещение',
-        items: ['Большая двуспальная кровать', 'Поздний выезд по запросу'],
-      },
-      {
-        title: 'Оборудование и электроника',
-        items: ['Кондиционер', 'Сейф в номере', 'Электронные замки'],
-      },
-      {
-        title: 'Видео/аудио',
-        items: ['Телевизор с плоским экраном', 'Домашний кинотеатр'],
-      },
-      {
-        title: 'Интернет/телефония',
-        items: ['Высокоскоростной Wi-Fi'],
-      },
-    ],
-    rates: [
-      {
-        id: 'suite-basic-prepay',
-        meal: 'Питание не включено',
+        id: 'standard-half-board',
+        meal: 'Полупансион (завтрак и ужин)',
         cancellation: 'Бесплатная отмена',
+        payment: 'Без предоплаты',
+        price: 4200,
+        oldPrice: 5200,
+        discount: '-19%',
+        taxes: 'Налоги и сборы включены',
+        cardServiceTitles: ['Бассейн', 'Терраса'],
+        tooltipServiceTitles: ['Бассейн', 'Терраса', 'Парковка', 'SPA-зона'],
+        detailHighlights: ['Бассейн', 'Терраса', 'Парковка'],
+        tooltipDetails: {
+          meal: { title: 'Полупансион', text: 'В тариф включены завтрак и ужин.' },
+          cancellation: { title: 'Бесплатная отмена', text: 'Бесплатная отмена доступна до даты, указанной в правилах бронирования.' },
+          payment: { title: 'Способы оплаты', text: 'Без предоплаты. Оплата производится при заселении.' },
+        },
+      },
+      {
+        id: 'standard-breakfast-prepay-plus',
+        meal: 'Завтрак',
+        cancellation: 'Условия отмены',
         payment: 'Нужна предоплата',
-        price: 8000,
-        oldPrice: 16000,
-        discount: '-50%',
+        price: 3600,
         taxes: 'Налоги и сборы включены',
-        cardServiceTitles: ['Бассейн', 'Пляж'],
-        tooltipServiceTitles: ['Бассейн', 'Пляж', 'SPA-зона', 'Прокат велосипедов', 'Парковка'],
-        detailHighlights: ['Бассейн', 'Пляж', 'SPA-зона', 'Прокат велосипедов'],
+        cardServiceTitles: ['Пляж', 'Сауна'],
+        tooltipServiceTitles: ['Пляж', 'Сауна', 'Тренажерный зал', 'Парковка'],
+        detailHighlights: ['Пляж', 'Сауна'],
         tooltipDetails: {
-          meal: {
-            title: 'Питание не включено',
-            text: 'Питание в стоимость не входит. Его можно добавить на следующем шаге.',
-          },
-          cancellation: {
-            title: 'Бесплатная отмена',
-            text: 'Бесплатная отмена бронирования возможна до 21.12.2026 0:00 (UTC +03:00). После этого удерживается часть стоимости бронирования.',
-          },
-          payment: {
-            title: 'Способы оплаты',
-            text: 'Нужна предоплата. Для подтверждения бронирования требуется оплата банковской картой.',
-          },
-        },
-      },
-      {
-        id: 'suite-breakfast-flex',
-        meal: 'Завтрак',
-        cancellation: 'Условия отмены',
-        payment: 'Без предоплаты',
-        price: 9600,
-        oldPrice: 12000,
-        discount: '-20%',
-        taxes: 'Налоги и сборы включены',
-        cardServiceTitles: ['Сейф', 'Поздний выезд'],
-        tooltipServiceTitles: ['Сейф', 'Поздний выезд', 'Коворкинг-зона', 'Бизнес-центр', 'Конференц-зал'],
-        detailHighlights: ['Сейф в номере', 'Поздний выезд до 14:00', 'Коворкинг-зона'],
-        tooltipDetails: {
-          meal: {
-            title: 'Завтрак',
-            text: 'Завтрак включен в стоимость тарифа для всех гостей.',
-          },
-          cancellation: {
-            title: 'Условия отмены',
-            text: 'Бесплатная отмена невозможна. При отмене бронирования взимается стоимость первых суток проживания.',
-          },
-          payment: {
-            title: 'Способы оплаты',
-            text: 'Без предоплаты. Оплата производится при заселении.',
-          },
-        },
-      },
-      {
-        id: 'suite-breakfast-premium',
-        meal: 'Завтрак',
-        cancellation: 'Условия отмены',
-        payment: 'Без предоплаты',
-        price: 12000,
-        taxes: 'Налоги и сборы включены',
-        cardServiceTitles: ['Бассейн', 'Парковка'],
-        tooltipServiceTitles: ['Бассейн', 'Парковка', 'Пляж', 'Массажные кабинеты'],
-        detailHighlights: ['Бассейн', 'Пляж', 'Парковка', 'Массажные кабинеты'],
-        tooltipDetails: {
-          meal: {
-            title: 'Завтрак',
-            text: 'Завтрак включен в стоимость тарифа для всех гостей.',
-          },
-          cancellation: {
-            title: 'Условия отмены',
-            text: 'Бесплатная отмена невозможна. При отмене бронирования взимается стоимость первых суток проживания.',
-          },
-          payment: {
-            title: 'Способы оплаты',
-            text: 'Без предоплаты. Оплата производится при заселении.',
-          },
+          meal: { title: 'Завтрак', text: 'Завтрак включен в стоимость тарифа.' },
+          cancellation: { title: 'Условия отмены', text: 'Бесплатная отмена невозможна. Действуют штрафные условия.' },
+          payment: { title: 'Способы оплаты', text: 'Нужна предоплата для подтверждения бронирования.' },
         },
       },
     ],
@@ -344,6 +428,8 @@ function App() {
   const [rateDetails, setRateDetails] = React.useState(null);
   const [roomDetails, setRoomDetails] = React.useState(null);
   const [selectedOffer, setSelectedOffer] = React.useState(() => ({ room: rooms[0], rate: rooms[0].rates[0] }));
+  const filtersBlockRef = React.useRef(null);
+  const filterChipRefs = React.useRef({});
 
   const bookingForItems = [
     { id: 'self', label: 'Для себя', value: 'self' },
@@ -352,7 +438,7 @@ function App() {
 
   const handleSelectRate = (room, rate) => {
     setSelectedOffer({ room, rate });
-    setScreen('checkout');
+    setScreen('success');
   };
 
   const handleToggleSingleFilter = (filterKey) => {
@@ -407,18 +493,22 @@ function App() {
     <div className="prototype-shell">
       <div className="phone-frame">
         <TopUtilityBar />
-        <SearchSummary muted={screen === 'checkout'} />
+        <SearchSummary muted={screen === 'success'} />
 
         {screen === 'list' ? (
           <>
             <SectionHeader title="Выберите номер" />
             <div className="filters-block">
+              <div className="filters-block-anchor" ref={filtersBlockRef} />
               <div className="filters-row">
                 {filters.map((filter) => (
                   <FilterChip
                     active={isFilterActive(filter, activeFilters)}
                     filter={filter}
                     key={filter.key}
+                    chipRef={(node) => {
+                      filterChipRefs.current[filter.key] = node;
+                    }}
                     onClear={handleClearFilter}
                     onClick={handleFilterChipClick}
                     open={openFilterKey === filter.key}
@@ -428,7 +518,9 @@ function App() {
               </div>
               {openFilterKey ? (
                 <FilterDropdown
+                  anchorRef={filterChipRefs.current[openFilterKey]}
                   filter={filters.find((filter) => filter.key === openFilterKey)}
+                  filtersBlockRef={filtersBlockRef}
                   onToggleOption={handleToggleMultiFilterOption}
                   selectedValues={activeFilters[openFilterKey]}
                 />
@@ -441,15 +533,6 @@ function App() {
               {filteredRooms.length === 0 ? <EmptyState /> : null}
             </div>
           </>
-        ) : screen === 'checkout' ? (
-          <CheckoutScreen
-            bookingFor={bookingFor}
-            bookingForItems={bookingForItems}
-            onBack={() => setScreen('list')}
-            onBookingForChange={setBookingFor}
-            onSubmit={() => setScreen('success')}
-            selectedOffer={selectedOffer}
-          />
         ) : (
           <SuccessScreen />
         )}
@@ -885,6 +968,7 @@ function SuccessScreen() {
           <SvgIcon className="success-icon" icon={validIcon} />
           <h2>Прототип пройден успешно</h2>
           <p>Бронирование завершено. Вы дошли до финальной точки сценария.</p>
+          <div className="success-banner">Чтобы завершить тестирование, вернитесь на соседнюю вкладку и ответьте на несколько вопросов.</div>
         </div>
       </div>
     </>
@@ -899,12 +983,12 @@ function SvgInlineIcon({ className, icon }) {
   return <span aria-hidden="true" className={`${className} svg-inline-icon`} dangerouslySetInnerHTML={{ __html: icon }} />;
 }
 
-function FilterChip({ active, filter, onClear, onClick, open, value }) {
+function FilterChip({ active, chipRef, filter, onClear, onClick, open, value }) {
   const count = Array.isArray(value) ? value.length : 0;
   const label = filter.type === 'multi' && count > 0 ? `${filter.label}: ${count}` : filter.label;
 
   return (
-    <div className="filter-chip-wrap">
+    <div className="filter-chip-wrap" ref={chipRef}>
       <Chip
         className={`filter-chip ${active ? 'filter-chip-active' : ''} ${open ? 'filter-chip-open' : ''}`}
         endIcon={
@@ -931,13 +1015,45 @@ function FilterChip({ active, filter, onClear, onClick, open, value }) {
   );
 }
 
-function FilterDropdown({ filter, onToggleOption, selectedValues }) {
+function FilterDropdown({ anchorRef, filter, filtersBlockRef, onToggleOption, selectedValues }) {
+  const dropdownRef = React.useRef(null);
+  const [dropdownStyle, setDropdownStyle] = React.useState(null);
+
+  React.useLayoutEffect(() => {
+    if (!anchorRef || !dropdownRef.current || !filtersBlockRef.current) {
+      return undefined;
+    }
+
+    const updatePosition = () => {
+      if (!anchorRef || !dropdownRef.current || !filtersBlockRef.current) {
+        return;
+      }
+
+      const anchorRect = anchorRef.getBoundingClientRect();
+      const containerRect = filtersBlockRef.current.getBoundingClientRect();
+      const dropdownRect = dropdownRef.current.getBoundingClientRect();
+      const viewportPadding = 8;
+      const preferredLeft = anchorRect.left - containerRect.left;
+      const maxLeft = Math.max(viewportPadding, containerRect.width - dropdownRect.width - viewportPadding);
+      const left = Math.min(Math.max(viewportPadding, preferredLeft), maxLeft);
+
+      setDropdownStyle({ left });
+    };
+
+    updatePosition();
+    window.addEventListener('resize', updatePosition);
+
+    return () => {
+      window.removeEventListener('resize', updatePosition);
+    };
+  }, [anchorRef, filtersBlockRef]);
+
   if (!filter || filter.type !== 'multi') {
     return null;
   }
 
   return (
-    <div className={`filter-dropdown filter-dropdown-${filter.key}`}>
+    <div className={`filter-dropdown filter-dropdown-${filter.key}`} ref={dropdownRef} style={dropdownStyle ?? { visibility: 'hidden' }}>
       {filter.options.map((option) => {
         const checked = selectedValues.includes(option.value);
 
@@ -985,6 +1101,10 @@ function matchesRoomFilters(room, activeFilters) {
 }
 
 function matchesRateFilters(rate, activeFilters) {
+  if (activeFilters.meal.length > 0 && !activeFilters.meal.includes(getMealFilterValue(rate.meal))) {
+    return false;
+  }
+
   if (activeFilters.freeCancellation && rate.cancellation !== 'Бесплатная отмена') {
     return false;
   }
@@ -1010,6 +1130,22 @@ function formatNumberWithDecimals(value) {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(value);
+}
+
+function getMealFilterValue(meal) {
+  if (meal.includes('Все включено')) {
+    return 'all-inclusive';
+  }
+
+  if (meal.includes('Полупансион')) {
+    return 'half-board';
+  }
+
+  if (meal.includes('Завтрак')) {
+    return 'breakfast';
+  }
+
+  return 'no-food';
 }
 
 createRoot(document.getElementById('root')).render(
